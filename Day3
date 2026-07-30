@@ -1,0 +1,89 @@
+Salesforce Placement Management System
+Project Overview
+This project implements a Salesforce-based Placement Management System using Flow, Validation Rules, and Apex.
+The main purpose of the project is to automate the application process, validate application data, and handle business logic that cannot be achieved using declarative Salesforce tools alone.
+
+Requirements Implemented
+1. Record-Triggered Flow
+A Record-Triggered Flow was created on the Application__c object.
+The Flow performs the following actions:
+Automatically sets the Application Date when a new application is created.
+Sends a confirmation email to the Placement Officer.
+Completes the application process automatically after the required actions.
+Provides a successful execution/confirmation message where applicable.
+
+Flow Components
+The Flow contains:
+Start Element
+Triggered when a new Application__c record is created.
+Assignment Element
+Automatically assigns the Application Date.
+Email Action
+Sends a confirmation email to the Placement Officer.
+End
+Completes the Flow execution.
+
+2. Validation Rules
+Validation Rules were used to prevent users from entering invalid application data.
+Validation Rule 1 – CGPA Validation
+The student's CGPA must satisfy the minimum CGPA required for the selected job.
+Purpose:
+Prevents students who do not meet the minimum CGPA requirement from applying.
+Example:
+Student CGPA < Job Minimum CGPA
+
+Validation Rule 2 – Application After Job Deadline
+A student should not be allowed to apply after the job's last date.
+Purpose:
+Prevents applications for jobs whose application deadline has already passed.
+Example:
+Application Date > Job Last Date
+
+3. Apex Implementation
+Some requirements require more complex business logic and therefore cannot be handled completely using Flow or Validation Rules.
+An Apex Trigger named:
+ApplicationTrigger
+was created on:
+Application__c
+with the event:
+Before Insert
+
+Apex Responsibilities
+Apex is required for business logic such as:
+Checking the student's eligibility against the selected job.
+Comparing the student's CGPA with the job's minimum CGPA.
+Checking whether the job application deadline has expired.
+Handling multiple application records efficiently.
+Implementing logic that requires complex processing or database queries.
+
+Why These Solutions Were Chosen
+Why Flow?
+Flow was selected for tasks that involve automation and can be achieved using Salesforce's declarative tools.
+For example:
+Automatically setting Application Date.
+Sending confirmation emails.
+Automating actions when an Application record is created.
+Flow reduces the need for custom code and makes the automation easier to maintain.
+
+Why Validation Rules?
+Validation Rules were selected for simple data validation.
+They prevent incorrect records from being saved by checking conditions before the record is accepted.
+For example:
+Checking CGPA requirements.
+Checking application deadlines.
+Preventing invalid application data.
+Validation Rules are simple, fast, and suitable for straightforward validation conditions.
+
+Why Validation Rules?
+
+Validation Rules were selected for simple data validation.
+
+They prevent incorrect records from being saved by checking conditions before the record is accepted.
+
+For example:
+
+Checking CGPA requirements.
+Checking application deadlines.
+Preventing invalid application data.
+
+Validation Rules are simple, fast, and suitable for straightforward validation conditions.
